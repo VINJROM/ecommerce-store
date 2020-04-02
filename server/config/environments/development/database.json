@@ -2,13 +2,12 @@
   "defaultConnection": "default",
   "connections": {
     "default": {
-      "connector": "strapi-hook-mongoose",
+      "connector": "mongoose",
       "settings": {
-        "client": "mongo",
-        "host": "@cluster0-w2ghj.mongodb.net",
+        "database": "server",
+        "host": "cluster0-w2ghj.mongodb.net",
         "srv": "true",
         "port": 27017,
-        "database": "server",
         "username": "Vinjrom",
         "password": "chucki93"
       },

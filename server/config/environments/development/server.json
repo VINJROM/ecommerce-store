@@ -1,10 +1,13 @@
 {
   "host": "localhost",
   "port": 1337,
-  "autoReload": {
-    "enabled": true
+  "proxy": {
+    "enabled": false
   },
   "cron": {
     "enabled": false
+  },
+  "admin": {
+    "autoOpen": false
   }
 }
