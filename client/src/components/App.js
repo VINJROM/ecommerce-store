@@ -18,13 +18,6 @@ class App extends Component {
             image{
               name
             }
-<<<<<<< HEAD
-          }
-        }`
-      }
-    });
-    console.log(response);
-=======
           }`
         }
       });
@@ -33,7 +26,6 @@ class App extends Component {
     } catch (err) {
       console.error(err);
     }
->>>>>>> parent of 4b896bc... add image, name, desc src
   }
 
   render() {
