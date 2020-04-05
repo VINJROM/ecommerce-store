@@ -18,14 +18,11 @@ class App extends Component {
             image{
               name
             }
-          }`
-        }
-      });
-      console.log(response);
-      this.setState({ brands: response.data.brands });
-    } catch (err) {
-      console.error(err);
-    }
+          }
+        }`
+      }
+    });
+    console.log(response);
   }
 
   render() {
