@@ -43,53 +43,7 @@ class App extends Component {
             Brew Brands
           </Heading>
         </Box>
-<<<<<<< HEAD
-        {/* Brands */}
-        <Box
-          dangerouslySetInlineStyle={{
-            __style: {
-              backgroundColor: "#d6c8ec"
-            }
-          }}
-          shape="rounded"
-          wrap
-          display="flex"
-          justifyContent="around"
-        >
-          {brands.map(brand => (
-            <Box margin={2} width={200} key={brand._id}>
-              <Card
-                image={
-                  <Box height={200} width={200}>
-                    <Image
-                      alt="Brand"
-                      naturalHeight={1}
-                      naturalWidth={1}
-                      src={`${apiUrl}${brand.image[0].url}`}
-                    />
-                  </Box>
-                }
-              >
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  direction="column"
-                >
-                  <Text bold size="xl">
-                    {brand.name}
-                  </Text>
-                  <Text>{brand.description}</Text>
-                  <Text bold size="xl">
-                    <Link to={`/${brand._id}`}>See Brews</Link>
-                  </Text>
-                </Box>
-              </Card>
-            </Box>
-          ))}
-        </Box>
-=======
->>>>>>> parent of 4b896bc... add image, name, desc src
+
       </Container>
     );
   }
