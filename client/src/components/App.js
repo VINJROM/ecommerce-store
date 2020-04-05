@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container, Box, Heading, Card, Image, Text } from "gestalt";
-import { Link } from "react-router-dom";
+import { Container, Box, Heading } from "gestalt";
 import "./App.css";
 import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
@@ -27,7 +26,7 @@ class App extends Component {
           }`
         }
       });
-      // console.log(response);
+      console.log(response);
       this.setState({ brands: response.data.brands });
     } catch (err) {
       console.error(err);
@@ -35,8 +34,6 @@ class App extends Component {
   }
 
   render() {
-    const { brands } = this.state;
-
     return (
       <Container>
         {/* Brands Section */}
@@ -46,6 +43,7 @@ class App extends Component {
             Brew Brands
           </Heading>
         </Box>
+<<<<<<< HEAD
         {/* Brands */}
         <Box
           dangerouslySetInlineStyle={{
@@ -90,6 +88,8 @@ class App extends Component {
             </Box>
           ))}
         </Box>
+=======
+>>>>>>> parent of 4b896bc... add image, name, desc src
       </Container>
     );
   }
