@@ -10,7 +10,7 @@ const strapi = new Strapi(apiUrl);
 class App extends Component {
   state = {
     brands: [],
-    searchTerm: ""
+    searchTerm: "",
   };
 
   async componentDidMount() {
@@ -26,8 +26,8 @@ class App extends Component {
                 url
               }
             }
-          }`
-        }
+          }`,
+        },
       });
       // console.log(response);
       this.setState({ brands: response.data.brands });
@@ -36,12 +36,23 @@ class App extends Component {
     }
   }
 
+  // When search input received, set state to search value
   handleChange = ({ value }) => {
     this.setState({ searchTerm: value });
   };
 
+  // Displays brands based on search-term input
+  filteredBrands = ({ searchTerm, brands }) => {
+    return brands.filter((brand) => {
+      return (
+        brand.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        brand.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
+  };
+
   render() {
-    const { brands, searchTerm } = this.state;
+    const { searchTerm } = this.state;
 
     return (
       <Container>
@@ -51,6 +62,7 @@ class App extends Component {
             id="searchField"
             accessibilityLabel="Brands Search Field"
             onChange={this.handleChange}
+            value={searchTerm}
             placeholder="Search Brands"
           />
           <Box margin={3}>
@@ -74,15 +86,15 @@ class App extends Component {
         <Box
           dangerouslySetInlineStyle={{
             __style: {
-              backgroundColor: "#d6c8ec"
-            }
+              backgroundColor: "#d6c8ec",
+            },
           }}
           shape="rounded"
           wrap
           display="flex"
           justifyContent="around"
         >
-          {brands.map(brand => (
+          {this.filteredBrands(this.state).map((brand) => (
             <Box paddingY={4} margin={2} width={200} key={brand._id}>
               <Card
                 image={
