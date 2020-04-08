@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Container, Box, Heading, Card, Image, Text } from "gestalt";
+import {
+  Container,
+  Box,
+  Heading,
+  Card,
+  Image,
+  Text,
+  SearchField,
+  Icon,
+} from "gestalt";
 import { Link } from "react-router-dom";
 import "./App.css";
 import Strapi from "strapi-sdk-javascript/build/main";
@@ -9,6 +18,7 @@ const strapi = new Strapi(apiUrl);
 class App extends Component {
   state = {
     brands: [],
+    searchTerm: "",
   };
 
   async componentDidMount() {
@@ -34,11 +44,34 @@ class App extends Component {
     }
   }
 
+  // Sends search value to Strapi
+  handleChange = (value) => {
+    this.setState({ searchTerm: value });
+  };
+
   render() {
-    const { brands } = this.state;
+    
+    const { brands, searchTerm } = this.state;
 
     return (
       <Container>
+        {/* Brands Search Field */}
+        <Box display="flex" justifyContent="center" marginTop={4}>
+          <SearchField
+            id="searchField"
+            accessibilityLabel="Brands Search Field"
+            onChange={this.handleChange}
+            placeholder="Search Brands"
+          />
+          <Box margin={2}>
+            <Icon
+              icon="filter"
+              color={searchTerm ? "orange" : "gray"}
+              size={20}
+              accessibilityLabel="Filter"
+            />
+          </Box>
+        </Box>
         {/* Brands Section */}
         <Box display="flex" justifyContent="center" marginBottom={2}>
           {/* Brands Header */}
