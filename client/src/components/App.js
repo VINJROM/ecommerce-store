@@ -36,7 +36,7 @@ class App extends Component {
     }
   }
 
-  // When search input received, set state to search value
+  // Sets state to search value
   handleChange = ({ value }) => {
     this.setState({ searchTerm: value });
   };
@@ -104,7 +104,7 @@ class App extends Component {
                       alt="Brand"
                       naturalHeight={1}
                       naturalWidth={1}
-                      src={`${apiUrl}${brand.image.url}`}
+                      src={`${apiUrl}${brand.image[0].url}`}
                     />
                   </Box>
                 }
