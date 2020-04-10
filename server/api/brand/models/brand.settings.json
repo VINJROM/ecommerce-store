@@ -21,6 +21,10 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "brews": {
+      "via": "brand",
+      "collection": "brew"
     }
   }
 }
