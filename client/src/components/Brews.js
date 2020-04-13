@@ -166,7 +166,7 @@ class Brews extends React.Component {
               padding={2}
             >
               {/* User Cart Heading */}
-              <Heading align="center" size="md">
+              <Heading align="center" size="sm">
                 {" "}
                 Your Cart
               </Heading>
