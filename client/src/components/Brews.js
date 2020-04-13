@@ -42,6 +42,24 @@ class Brews extends React.Component {
     }
   }
 
+  addToCart = (brew) => {
+    const alreadyInCart = this.state.cartItems.findIndex(
+      (item) => item._id === brew._id
+    );
+
+    if (alreadyInCart === -1) {
+      const updatedItems = this.state.cartItems.concat({
+        ...brew,
+        quantity: 1,
+      });
+      this.setState({ cartItems: updatedItems });
+    } else {
+      const updatedItems = [...this.state.cartItems];
+      updatedItems[alreadyInCart].quantity += 1;
+      this.setState({ cartItems: updatedItems });
+    }
+  };
+
   render() {
     const { brand, brews, cartItems } = this.state;
 
@@ -106,7 +124,11 @@ class Brews extends React.Component {
                     <Text color="orchid">${brew.price}</Text>
                     <Box marginTop={2}>
                       <Text bold size="xl">
-                        <Button color="blue" text="Add to Cart" />
+                        <Button
+                          onClick={() => this.addToCart(brew)}
+                          color="blue"
+                          text="Add to Cart"
+                        />
                       </Text>
                     </Box>
                   </Box>
