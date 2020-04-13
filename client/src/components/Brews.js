@@ -10,6 +10,7 @@ import {
   Mask,
   IconButton,
 } from "gestalt";
+import calculatePrice from "../utils";
 import { Link } from "react-router-dom";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -67,6 +68,13 @@ class Brews extends React.Component {
       updatedItems[alreadyInCart].quantity += 1;
       this.setState({ cartItems: updatedItems });
     }
+  };
+
+  deleteItemFromCard = (itemToDeleteId) => {
+    const filteredItems = this.state.cartItems.filter(
+      (item) => item._id !== itemToDeleteId
+    );
+    this.setState({ cartItems: filteredItems });
   };
 
   render() {
@@ -146,7 +154,9 @@ class Brews extends React.Component {
             ))}
           </Box>
         </Box>
+
         {/* User Cart */}
+
         <Box alignSelf="end" marginTop={2} marginLeft={8}>
           <Mask shape="rounded" wash>
             <Box
@@ -171,10 +181,11 @@ class Brews extends React.Component {
                     {(item.quantity * item.price).toFixed(2)}
                   </Text>
                   <IconButton
-                    accessibilityLabel="DeleteItem"
+                    accessibilityLabel="Delete Item"
                     icon="cancel"
                     size="sm"
                     iconColor="red"
+                    onClick={() => this.deleteItemFromCard(item._id)}
                   />
                 </Box>
               ))}
@@ -189,7 +200,7 @@ class Brews extends React.Component {
                     <Text color="red"> Please select some items</Text>
                   )}
                 </Box>
-                <Text size="lg">Total: $3.99</Text>
+                <Text size="lg">Total: {calculatePrice(cartItems)}</Text>
                 <Text>
                   <Link to="/checkout">Checkout</Link>
                 </Text>
