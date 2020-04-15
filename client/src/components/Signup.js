@@ -18,22 +18,49 @@ class Signup extends React.Component {
           justifyContent="center"
         >
           {/* Sign up form */}
-          <form style ={{
-            display: 'inlineBlock',
-            textAlign: 'center',
-            maxWidth: 450
-          }}>
+          <form
+            style={{
+              display: "inlineBlock",
+              textAlign: "center",
+              maxWidth: 450,
+            }}
+          >
             {/* Sign Up Form Heading */}
             <Box
-            marginBottom ={2}
-            display="flex"
-            direction="column"
-            alignItems="center"
+              marginBottom={2}
+              display="flex"
+              direction="column"
+              alignItems="center"
             >
-              <Heading
-              color="midnight"> Let's Get Started</Heading>
-              <Text italic color="orchid"> Sign up to order some brews!</Text>
+              <Heading color="midnight"> Let's Get Started</Heading>
+              <Text italic color="orchid">
+                {" "}
+                Sign up to order some brews!
+              </Text>
             </Box>
+            {/* Username Input */}
+            <TextField
+              id="username"
+              type="text"
+              name="username"
+              placeholder="username"
+              onChange={this.handleChange}
+            />
+            {/* Email Input */}
+            <TextField
+              id="email"
+              type="text"
+              name="email"
+              placeholder="Email Address"
+              onChange={this.handleChange}
+            />
+            {/* Pasasword Input */}
+            <TextField
+              id="password"
+              type="password"
+              name="password"
+              placeholder="password"
+            />
           </form>
         </Box>
       </Container>
