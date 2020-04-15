@@ -2,6 +2,16 @@ import React from "react";
 import { Container, Box, Button, Heading, Text, TextField } from "gestalt";
 
 class Signup extends React.Component {
+  state = {
+    username: "",
+    email: "",
+    password: "",
+  };
+
+  handleChange = ({ event, value }) => {
+    this.setState({ [event.target.name]: value });
+  };
+
   render() {
     return (
       <Container>
@@ -54,13 +64,15 @@ class Signup extends React.Component {
               placeholder="Email Address"
               onChange={this.handleChange}
             />
-            {/* Pasasword Input */}
+            {/* Password Input */}
             <TextField
               id="password"
               type="password"
               name="password"
               placeholder="password"
+              onChange={this.handleChange}
             />
+            <Button inline color="blue" text="submit" type="submit" />
           </form>
         </Box>
       </Container>
