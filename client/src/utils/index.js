@@ -1,3 +1,6 @@
+const CART_KEY = "cart";
+const TOKEN_KEY = "jwt";
+
 // calculates total price of cart items
 export const calculatePrice = (items) => {
   return `$${items
@@ -12,10 +15,17 @@ export const setCart = (value, cartKey) => {
     localStorage.setItem(cartKey, JSON.stringify(value));
   }
 };
-const CART_KEY = "cart";
+
 export const getCart = (cartKey = CART_KEY) => {
   if (localStorage && localStorage.getItem(cartKey)) {
     return JSON.parse(localStorage.getItem(cartKey));
   }
   return [];
+};
+
+// auth
+export const setToken = (value, tokenKey = TOKEN_KEY) => {
+  if (localStorage) {
+    localStorage.setItem(tokenKey, JSON.stringify(value));
+  }
 };

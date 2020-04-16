@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Box, Button, Heading, Text, TextField } from "gestalt";
+import { setToken } from "../utils";
 import ToastMessage from "./ToastMessage";
 import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
@@ -12,6 +13,7 @@ class Signup extends React.Component {
     password: "",
     toast: false,
     toastMessage: "",
+    loading: false
   };
 
   // event handler updates state for username, email, and password
@@ -29,23 +31,24 @@ class Signup extends React.Component {
       this.showToast("Fill in all fields");
       return;
     }
+    
     // sign up user
     try {
       // set loading - true
       this.setState({ loading: true });
       // make request to register user with Strapi
-      const response = await strapi.register(username, email, password)
+      const response = await strapi.register(username, email, password);
       // set loading false
-      this.setState({ loading: false} )
-      // put token to manager user session to local storate
-      console.log(response)
+      this.setState({ loading: false} );
+      // put token (to manage user session) in local storage (with jwt)
+      setToken(response.jwt);
       // redirect user to home page
       this.redirectUser('/');
     } catch (err) {
       // set loading - false
-      this.setState({ loading: false} )
+      this.setState({ loading: false} );
       // show error message with toast message
-      this.showToast(err.message)
+      this.showToast(err.message);
     }
   };
 
@@ -62,7 +65,7 @@ class Signup extends React.Component {
   };
 
   render() {
-    const { toastMessage, toast } = this.state;
+    const { toastMessage, toast, loading } = this.state;
 
     return (
       <Container>
@@ -78,7 +81,7 @@ class Signup extends React.Component {
           display="flex"
           justifyContent="center"
         >
-          {/* Sign Up Form */}
+          {/* sign up form */}
           <form
             style={{
               display: "inlineBlock",
@@ -87,7 +90,7 @@ class Signup extends React.Component {
             }}
             onSubmit={this.handleSubmit}
           >
-            {/* Sign Up Form Heading */}
+            {/* sign Up form heading */}
             <Box
               marginBottom={2}
               display="flex"
@@ -99,7 +102,7 @@ class Signup extends React.Component {
                 Sign up to order some brews!
               </Text>
             </Box>
-            {/* Username Input */}
+            {/* username Input */}
             <TextField
               id="username"
               type="text"
@@ -107,7 +110,7 @@ class Signup extends React.Component {
               placeholder="Username"
               onChange={this.handleChange}
             />
-            {/* Email Address Input */}
+            {/* email Address Input */}
             <TextField
               id="email"
               type="email"
@@ -115,7 +118,7 @@ class Signup extends React.Component {
               placeholder="Email Address"
               onChange={this.handleChange}
             />
-            {/* Password Input */}
+            {/* password Input */}
             <TextField
               id="password"
               type="password"
@@ -123,7 +126,7 @@ class Signup extends React.Component {
               placeholder="Password"
               onChange={this.handleChange}
             />
-            <Button inline color="blue" text="Submit" type="submit" />
+            <Button inline disabled ={loading} color="blue" text="Submit" type="submit" />
           </form>
         </Box>
         <ToastMessage show={toast} message={toastMessage} />
