@@ -1,6 +1,9 @@
 import React from "react";
 import { Container, Box, Button, Heading, Text, TextField } from "gestalt";
 import ToastMessage from "./ToastMessage";
+import Strapi from "strapi-sdk-javascript/build/main";
+const apiUrl = process.env.API_URL || "http://localhost:1337";
+const strapi = new Strapi(apiUrl);
 
 class Signup extends React.Component {
   state = {
@@ -8,32 +11,42 @@ class Signup extends React.Component {
     email: "",
     password: "",
     toast: false,
-    toastMessage: ""
+    toastMessage: "",
   };
 
-// event handler updates state for username, email, and password
+  // event handler updates state for username, email, and password
   handleChange = ({ event, value }) => {
     event.persist();
     this.setState({ [event.target.name]: value });
   };
 
-// event handler displays toast message if missing form
-  handleSubmit = event => {
+  // event handler displays toast message if missing form
+  handleSubmit = (event) => {
     event.preventDefault();
 
     if (this.isFormEmpty(this.state)) {
       this.showToast("Fill in all fields");
       return;
     }
-    console.log("submitted");
+    // sign up user
+    try {
+      this.setState({ loading: true });
+      // make request to register user with Strapi
+      // set loading false
+      // put token to manager user session to local storate
+      // redirect user to home page
+    } catch (err) {
+      // set loading - false
+      // show error message with toast message
+    }
   };
 
   isFormEmpty = ({ username, email, password }) => {
     return !username || !email || !password;
   };
 
-// displays "toast message"
-  showToast = toastMessage => {
+  // displays "toast message"
+  showToast = (toastMessage) => {
     this.setState({ toast: true, toastMessage });
     setTimeout(() => this.setState({ toast: false, toastMessage: "" }), 5000);
   };
@@ -46,8 +59,8 @@ class Signup extends React.Component {
         <Box
           dangerouslySetInlineStyle={{
             __style: {
-              backgroundColor: "#ebe2da"
-            }
+              backgroundColor: "#ebe2da",
+            },
           }}
           margin={4}
           padding={4}
@@ -60,7 +73,7 @@ class Signup extends React.Component {
             style={{
               display: "inlineBlock",
               textAlign: "center",
-              maxWidth: 450
+              maxWidth: 450,
             }}
             onSubmit={this.handleSubmit}
           >
