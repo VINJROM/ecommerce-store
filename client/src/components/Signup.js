@@ -11,11 +11,13 @@ class Signup extends React.Component {
     toastMessage: ""
   };
 
+// event handler updates state for username, email, and password
   handleChange = ({ event, value }) => {
     event.persist();
     this.setState({ [event.target.name]: value });
   };
 
+// event handler displays toast message if missing form
   handleSubmit = event => {
     event.preventDefault();
 
@@ -30,6 +32,7 @@ class Signup extends React.Component {
     return !username || !email || !password;
   };
 
+// displays "toast message"
   showToast = toastMessage => {
     this.setState({ toast: true, toastMessage });
     setTimeout(() => this.setState({ toast: false, toastMessage: "" }), 5000);
