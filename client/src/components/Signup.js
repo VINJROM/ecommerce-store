@@ -23,6 +23,7 @@ class Signup extends React.Component {
   // event handler displays toast message if missing form
   handleSubmit = (event) => {
     event.preventDefault();
+    const {username, email, password} = this.state
 
     if (this.isFormEmpty(this.state)) {
       this.showToast("Fill in all fields");
@@ -30,16 +31,25 @@ class Signup extends React.Component {
     }
     // sign up user
     try {
+      // set loading - true
       this.setState({ loading: true });
       // make request to register user with Strapi
+      const response = await strapi.register(username, email, password)
       // set loading false
+      this.setState({ loading: false} )
       // put token to manager user session to local storate
+      console.log(response)
       // redirect user to home page
+      this.redirectUser('/');
     } catch (err) {
       // set loading - false
+      this.setState({ loading: false} )
       // show error message with toast message
+      this.showToast(err.message)
     }
   };
+
+  redirectUser = path => this.props.history.push(path);
 
   isFormEmpty = ({ username, email, password }) => {
     return !username || !email || !password;
