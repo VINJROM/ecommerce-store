@@ -23,7 +23,7 @@ class Signup extends React.Component {
   };
 
   // event handler displays toast message if missing form
-  handleSubmit = (event) => {
+  handleSubmit = async event => {
     event.preventDefault();
     const {username, email, password} = this.state
 
