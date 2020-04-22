@@ -14,6 +14,7 @@ export const setCart = (value, cartKey) => {
   if (localStorage) {
     localStorage.setItem(cartKey, JSON.stringify(value));
   }
+  return null;
 };
 
 export const getCart = (cartKey = CART_KEY) => {
@@ -23,7 +24,15 @@ export const getCart = (cartKey = CART_KEY) => {
   return [];
 };
 
-// auth
+// authorizes sign in
+
+export const getToken = (tokenKey = TOKEN_KEY) => {
+  if (localStorage && localStorage.getItem(tokenKey)) {
+    return JSON.parse(localStorage.getItem(tokenKey));
+  }
+  return null;
+};
+
 export const setToken = (value, tokenKey = TOKEN_KEY) => {
   if (localStorage) {
     localStorage.setItem(tokenKey, JSON.stringify(value));

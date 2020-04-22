@@ -1,8 +1,52 @@
 import React from "react";
-import { Box, Text, Heading, Image } from "gestalt";
+import { Box, Text, Heading, Image, Button } from "gestalt";
 import { NavLink } from "react-router-dom";
+import { getToken } from "../utils";
 
-const Navbar = () => (
+const Navbar = () => {
+  return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
+};
+
+const AuthNav = () => {
+  <Box
+    display="flex"
+    alignItems="center"
+    justifyContent="around"
+    height={70}
+    color="midnight"
+    padding={1}
+    shape="roundedBottom"
+  >
+    {/* checkout link */}
+    <NavLink activeClassName="active" to="/checkout">
+      <Text size="x1" color="white">
+        Checkout
+      </Text>
+    </NavLink>
+
+    {/* title and logo */}
+    <NavLink activeClassName="active" exact to="/">
+      <Box display="flex" alignItems="center">
+        <Box margin={2} height={50} width={50}>
+          <Image
+            alt="BrewHaha Logo"
+            naturalHeight={1}
+            naturalWidth={1}
+            src="./icons/logo.svg"
+          />
+        </Box>
+        <Heading size="xs" color="orange">
+          BrewHaha
+        </Heading>
+      </Box>
+    </NavLink>
+
+    {/* signout button */}
+    <Button color="transparent" text="Sign Out" inline size="md" />
+  </Box>;
+};
+
+const UnAuthNav = () => (
   <Box
     display="flex"
     alignItems="center"
