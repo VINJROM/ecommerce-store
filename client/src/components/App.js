@@ -39,12 +39,12 @@ class App extends Component {
     }
   }
 
-  // Sets state to search value
+  // sets state to search value
   handleChange = ({ value }) => {
     this.setState({ searchTerm: value });
   };
 
-  // Displays brands based on search-term input
+  // displays brands based on search-term input
   filteredBrands = ({ searchTerm, brands }) => {
     return brands.filter((brand) => {
       return (
@@ -59,7 +59,7 @@ class App extends Component {
 
     return (
       <Container>
-        {/* Brands Search Field */}
+        {/* brands search field */}
         <Box display="flex" justifyContent="center" marginTop={4}>
           <SearchField
             id="searchField"
@@ -78,14 +78,14 @@ class App extends Component {
           </Box>
         </Box>
 
-        {/* Brands Section */}
+        {/* brands section */}
         <Box display="flex" justifyContent="center" marginBottom={2}>
-          {/* Brands Header */}
+          {/* brands header */}
           <Heading color="midnight" size="md">
             Brew Brands
           </Heading>
         </Box>
-        {/* Brands */}
+        {/* brands */}
         <Box
           dangerouslySetInlineStyle={{
             __style: {

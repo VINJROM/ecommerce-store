@@ -10,7 +10,7 @@ class Signup extends React.Component {
   state = {
     username: "",
     email: "",
-    password: "",
+    password: "", 
     toast: false,
     toastMessage: "",
     loading: false
