@@ -24,8 +24,14 @@ export const getCart = (cartKey = CART_KEY) => {
   return [];
 };
 
-// authorizes sign in
+// clears cart upon signout
+export const clearCart = (cartKey = CART_KEY) => {
+  if (localStorage) {
+    localStorage.removeItem(cartKey);
+  }
+};
 
+// authorizes sign in
 export const getToken = (tokenKey = TOKEN_KEY) => {
   if (localStorage && localStorage.getItem(tokenKey)) {
     return JSON.parse(localStorage.getItem(tokenKey));
@@ -36,5 +42,12 @@ export const getToken = (tokenKey = TOKEN_KEY) => {
 export const setToken = (value, tokenKey = TOKEN_KEY) => {
   if (localStorage) {
     localStorage.setItem(tokenKey, JSON.stringify(value));
+  }
+};
+
+// clears token upon signout
+export const clearToken = (tokenKey = TOKEN_KEY) => {
+  if (localStorage) {
+    localStorage.removeItem(tokenKey);
   }
 };

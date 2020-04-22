@@ -1,11 +1,18 @@
 import React from "react";
 import { Box, Text, Heading, Image, Button } from "gestalt";
+import { getToken, clearToken, clearCart } from "../utils";
 import { NavLink } from "react-router-dom";
-import { getToken } from "../utils";
 
-const Navbar = () => {
-  return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
-};
+class Navbar extends React.Component {
+  handleSignout = () => {
+    // clear token
+    // clear cart
+    // redirect home
+  };
+  render() {
+    return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
+  }
+}
 
 const AuthNav = () => {
   <Box
