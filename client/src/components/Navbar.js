@@ -9,6 +9,7 @@ class Navbar extends React.Component {
     clearCart();
     this.props.history.push("/");
   };
+
   render() {
     return getToken() !== null ? (
       <AuthNav handleSignout={this.handleSignout} />
@@ -18,7 +19,7 @@ class Navbar extends React.Component {
   }
 }
 
-const AuthNav = ({handleSignout}) => {
+const AuthNav = ({ handleSignout }) => (
   <Box
     display="flex"
     alignItems="center"
@@ -60,8 +61,8 @@ const AuthNav = ({handleSignout}) => {
       inline
       size="md"
     />
-  </Box>;
-};
+  </Box>
+);
 
 const UnAuthNav = () => (
   <Box

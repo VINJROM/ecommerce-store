@@ -29,7 +29,7 @@ class Signin extends React.Component {
       return;
     }
 
-    // sign up user
+    // Sign up user
     try {
       this.setState({ loading: true });
       const response = await strapi.login(username, password);
@@ -79,7 +79,7 @@ class Signin extends React.Component {
             }}
             onSubmit={this.handleSubmit}
           >
-            {/* sign in form & heading */}
+            {/* Sign In Form Heading */}
             <Box
               marginBottom={2}
               display="flex"
@@ -88,7 +88,7 @@ class Signin extends React.Component {
             >
               <Heading color="midnight">Welcome Back!</Heading>
             </Box>
-            {/* username input */}
+            {/* Username Input */}
             <TextField
               id="username"
               type="text"
@@ -96,7 +96,7 @@ class Signin extends React.Component {
               placeholder="Username"
               onChange={this.handleChange}
             />
-            {/* password input */}
+            {/* Password Input */}
             <TextField
               id="password"
               type="password"
