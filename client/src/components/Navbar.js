@@ -1,9 +1,5 @@
 import React from "react";
 import { Box, Text, Heading, Image, Button } from "gestalt";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { getToken, clearToken, clearCart } from "../utils";
 import { NavLink, withRouter } from "react-router-dom";
 
@@ -22,38 +18,13 @@ class Navbar extends React.Component {
     );
   }
 }
-=======
+
 import { NavLink } from "react-router-dom";
 import { getToken } from "../utils";
 
 const Navbar = () => {
   return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
 };
->>>>>>> parent of f07961f... create clear token, clear cart, and sign in auth
-=======
-import { NavLink } from "react-router-dom";
-import { getToken } from "../utils";
-=======
-import { NavLink } from "react-router-dom";
-import { getToken } from "../utils";
-=======
-import { NavLink } from "react-router-dom";
-import { getToken } from "../utils";
-
-const Navbar = () => {
-  return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
-};
->>>>>>> parent of f07961f... create clear token, clear cart, and sign in auth
-
-const Navbar = () => {
-  return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
-};
->>>>>>> parent of f07961f... create clear token, clear cart, and sign in auth
-
-const Navbar = () => {
-  return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
-};
->>>>>>> parent of f07961f... create clear token, clear cart, and sign in auth
 
 const AuthNav = ({ handleSignout }) => (
   <Box
