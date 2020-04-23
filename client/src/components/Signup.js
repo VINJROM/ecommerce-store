@@ -10,44 +10,35 @@ class Signup extends React.Component {
   state = {
     username: "",
     email: "",
-    password: "", 
+    password: "",
     toast: false,
     toastMessage: "",
     loading: false
   };
 
-  // event handler updates state for username, email, and password
   handleChange = ({ event, value }) => {
     event.persist();
     this.setState({ [event.target.name]: value });
   };
 
-  // event handler displays toast message if missing form
   handleSubmit = async event => {
     event.preventDefault();
-    const {username, email, password} = this.state
+    const { username, email, password } = this.state;
 
     if (this.isFormEmpty(this.state)) {
       this.showToast("Fill in all fields");
       return;
     }
-    
-    // sign up user
+
+    // Sign up user
     try {
-      // set loading - true
       this.setState({ loading: true });
-      // make request to register user with Strapi
       const response = await strapi.register(username, email, password);
-      // set loading false
-      this.setState({ loading: false} );
-      // put token (to manage user session) in local storage (with jwt)
+      this.setState({ loading: false });
       setToken(response.jwt);
-      // redirect user to home page
-      this.redirectUser('/');
+      this.redirectUser("/");
     } catch (err) {
-      // set loading - false
-      this.setState({ loading: false} );
-      // show error message with toast message
+      this.setState({ loading: false });
       this.showToast(err.message);
     }
   };
@@ -58,8 +49,7 @@ class Signup extends React.Component {
     return !username || !email || !password;
   };
 
-  // displays "toast message"
-  showToast = (toastMessage) => {
+  showToast = toastMessage => {
     this.setState({ toast: true, toastMessage });
     setTimeout(() => this.setState({ toast: false, toastMessage: "" }), 5000);
   };
@@ -72,8 +62,8 @@ class Signup extends React.Component {
         <Box
           dangerouslySetInlineStyle={{
             __style: {
-              backgroundColor: "#ebe2da",
-            },
+              backgroundColor: "#ebe2da"
+            }
           }}
           margin={4}
           padding={4}
@@ -81,16 +71,16 @@ class Signup extends React.Component {
           display="flex"
           justifyContent="center"
         >
-          {/* sign up form */}
+          {/* Sign Up Form */}
           <form
             style={{
               display: "inlineBlock",
               textAlign: "center",
-              maxWidth: 450,
+              maxWidth: 450
             }}
             onSubmit={this.handleSubmit}
           >
-            {/* sign Up form heading */}
+            {/* Sign Up Form Heading */}
             <Box
               marginBottom={2}
               display="flex"
@@ -102,7 +92,7 @@ class Signup extends React.Component {
                 Sign up to order some brews!
               </Text>
             </Box>
-            {/* username Input */}
+            {/* Username Input */}
             <TextField
               id="username"
               type="text"
@@ -110,7 +100,7 @@ class Signup extends React.Component {
               placeholder="Username"
               onChange={this.handleChange}
             />
-            {/* email Address Input */}
+            {/* Email Address Input */}
             <TextField
               id="email"
               type="email"
@@ -118,7 +108,7 @@ class Signup extends React.Component {
               placeholder="Email Address"
               onChange={this.handleChange}
             />
-            {/* password Input */}
+            {/* Password Input */}
             <TextField
               id="password"
               type="password"
@@ -126,7 +116,13 @@ class Signup extends React.Component {
               placeholder="Password"
               onChange={this.handleChange}
             />
-            <Button inline disabled ={loading} color="blue" text="Submit" type="submit" />
+            <Button
+              inline
+              disabled={loading}
+              color="blue"
+              text="Submit"
+              type="submit"
+            />
           </form>
         </Box>
         <ToastMessage show={toast} message={toastMessage} />

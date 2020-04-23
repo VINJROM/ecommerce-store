@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     brands: [],
     searchTerm: "",
-    loadingBrands: true,
+    loadingBrands: true
   };
 
   async componentDidMount() {
@@ -28,8 +28,8 @@ class App extends Component {
                 url
               }
             }
-          }`,
-        },
+          }`
+        }
       });
       // console.log(response);
       this.setState({ brands: response.data.brands, loadingBrands: false });
@@ -39,14 +39,12 @@ class App extends Component {
     }
   }
 
-  // sets state to search value
   handleChange = ({ value }) => {
     this.setState({ searchTerm: value });
   };
 
-  // displays brands based on search-term input
   filteredBrands = ({ searchTerm, brands }) => {
-    return brands.filter((brand) => {
+    return brands.filter(brand => {
       return (
         brand.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         brand.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -59,7 +57,7 @@ class App extends Component {
 
     return (
       <Container>
-        {/* brands search field */}
+        {/* Brands Search Field */}
         <Box display="flex" justifyContent="center" marginTop={4}>
           <SearchField
             id="searchField"
@@ -78,26 +76,26 @@ class App extends Component {
           </Box>
         </Box>
 
-        {/* brands section */}
+        {/* Brands Section */}
         <Box display="flex" justifyContent="center" marginBottom={2}>
-          {/* brands header */}
+          {/* Brands Header */}
           <Heading color="midnight" size="md">
             Brew Brands
           </Heading>
         </Box>
-        {/* brands */}
+        {/* Brands */}
         <Box
           dangerouslySetInlineStyle={{
             __style: {
-              backgroundColor: "#d6c8ec",
-            },
+              backgroundColor: "#d6c8ec"
+            }
           }}
           shape="rounded"
           wrap
           display="flex"
           justifyContent="around"
         >
-          {this.filteredBrands(this.state).map((brand) => (
+          {this.filteredBrands(this.state).map(brand => (
             <Box paddingY={4} margin={2} width={200} key={brand._id}>
               <Card
                 image={
@@ -107,7 +105,7 @@ class App extends Component {
                       alt="Brand"
                       naturalHeight={1}
                       naturalWidth={1}
-                      src={`${apiUrl}${brand.image[0].url}`}
+                      src={`${apiUrl}${brand.image.url}`}
                     />
                   </Box>
                 }

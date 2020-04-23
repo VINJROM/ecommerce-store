@@ -19,13 +19,6 @@ class Navbar extends React.Component {
   }
 }
 
-import { NavLink } from "react-router-dom";
-import { getToken } from "../utils";
-
-const Navbar = () => {
-  return getToken() !== null ? <AuthNav /> : <UnAuthNav />;
-};
-
 const AuthNav = ({ handleSignout }) => (
   <Box
     display="flex"
@@ -36,14 +29,14 @@ const AuthNav = ({ handleSignout }) => (
     padding={1}
     shape="roundedBottom"
   >
-    {/* checkout link */}
+    {/* Checkout Link */}
     <NavLink activeClassName="active" to="/checkout">
-      <Text size="x1" color="white">
+      <Text size="xl" color="white">
         Checkout
       </Text>
     </NavLink>
 
-    {/* title and logo */}
+    {/* Title and Logo */}
     <NavLink activeClassName="active" exact to="/">
       <Box display="flex" alignItems="center">
         <Box margin={2} height={50} width={50}>
@@ -60,7 +53,7 @@ const AuthNav = ({ handleSignout }) => (
       </Box>
     </NavLink>
 
-    {/* signout button */}
+    {/* Signout Button */}
     <Button
       onClick={handleSignout}
       color="transparent"
@@ -83,7 +76,7 @@ const UnAuthNav = () => (
   >
     {/* Sign In Link */}
     <NavLink activeClassName="active" to="/signin">
-      <Text size="x1" color="white">
+      <Text size="xl" color="white">
         Sign In
       </Text>
     </NavLink>
@@ -107,7 +100,7 @@ const UnAuthNav = () => (
 
     {/* Sign Up Link */}
     <NavLink activeClassName="active" to="/signup">
-      <Text size="x1" color="white">
+      <Text size="xl" color="white">
         Sign Up
       </Text>
     </NavLink>
