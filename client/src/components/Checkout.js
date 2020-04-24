@@ -59,6 +59,8 @@ class Checkout extends React.Component {
           {/* Checkout Form Heading */}
           <Heading color="midnight">Checkout</Heading>
 
+          {cartItems.length > 0 ?<React.Fragment>
+
           {/* User Cart */}
           <Box
             display="flex"
@@ -69,7 +71,7 @@ class Checkout extends React.Component {
             marginBottom={6}
           >
             <Text color="darkGray" italic>
-              {cartItems.length} for Checkout
+              {cartItems.length} Items for Checkout
             </Text>
             <Box padding={2}>
               {cartItems.map((item) => (
@@ -93,6 +95,7 @@ class Checkout extends React.Component {
             }}
             onSubmit={this.handleConfirmOrder}
           >
+            
             {/* Address Input */}
             <TextField
               id="address"
@@ -132,6 +135,14 @@ class Checkout extends React.Component {
               Submit
             </button>
           </form>
+          
+          </React.Fragment> : (
+            // Default Text if No Items in Cart
+            <Box color = "darkWash" shape="rounded" padding ={4}>
+                <Heading align="center" color="watermelon" size ="xs">Your Cart is Empty</Heading>
+                <Text align="center" italic color="green">Add Some Brews!</Text>
+              </Box>
+          )}
         </Box>
         <ToastMessage show={toast} message={toastMessage} />
       </Container>
