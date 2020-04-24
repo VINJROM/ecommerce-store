@@ -95,7 +95,7 @@ class Checkout extends React.Component {
               placeholder="Confirmation Email Address"
               onChange={this.handleChange}
             />
-           <Button id="stripe__button" type="submit">Submit</Button>
+           <button id="stripe__button" type="submit">Submit</button>
           </form>
         </Box>
         <ToastMessage show={toast} message={toastMessage} />
