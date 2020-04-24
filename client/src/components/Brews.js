@@ -114,7 +114,7 @@ class Brews extends React.Component {
                         alt="Brand"
                         naturalHeight={1}
                         naturalWidth={1}
-                        src={`${apiUrl}${brew.image.url}`}
+                        src={`${apiUrl}${brew.image[0].url}`}
                       />
                     </Box>
                   }
