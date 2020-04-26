@@ -261,4 +261,14 @@ const ConfirmationModal = ({
   </Modal>
 );
 
+const CheckoutForm = injectStripe(_CheckoutForm);
+
+const Checkout = () => (
+  <StripeProvider apiKey="sk_test_IBIX8tEQ3hZODLYg6qWtCM2n009HtaQadE">
+    <Elements>
+      <CheckoutForm/>
+    </Elements>
+  </StripeProvider>
+)
+
 export default Checkout;
