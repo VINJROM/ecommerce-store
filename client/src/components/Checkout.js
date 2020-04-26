@@ -1,10 +1,11 @@
 import React from "react";
 // prettier-ignore
 import { Container, Box, Button, Heading, Text, TextField, Modal, Spinner } from "gestalt";
+import {Elements, StripeProvider, CardElement, injectStripe} from 'react-stripe-elements'
 import ToastMessage from "./ToastMessage";
 import { getCart, calculatePrice } from "../utils";
 
-class Checkout extends React.Component {
+class _CheckoutForm extends React.Component {
   state = {
     cartItems: [],
     address: "",
@@ -145,9 +146,9 @@ class Checkout extends React.Component {
                   placeholder="Confirmation Email Address"
                   onChange={this.handleChange}
                 />
-                <br/>
-                <br/>
-                
+
+                 {/* Credit Card Elements */}
+                 <CardElement id="stripe__input" onReady ={input => input.focus()}/>
                 <button id="stripe__button" type="submit">
                   Submit
                 </button>
