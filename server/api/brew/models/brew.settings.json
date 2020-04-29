@@ -3,7 +3,7 @@
   "connection": "default",
   "collectionName": "brews",
   "info": {
-    "name": "Brew"
+    "name": "Brews"
   },
   "options": {
     "increments": true,
