@@ -19,7 +19,7 @@ import Brews from "./components/Brews";
 import registerServiceWorker from "./registerServiceWorker";
 
 
-// redirects unauthorized users to signin
+// Redirects unauthorized users to signin
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
